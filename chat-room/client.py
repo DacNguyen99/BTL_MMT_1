@@ -298,7 +298,10 @@ class RepoPage(tk.Frame):
                 file_name = parts[1]
 
                 network_peer.send_listpeer(file_name)
-                network_peer.send_request(self.peerListBox.get(0), file_name)
+                msg_box = tkinter.messagebox.askquestion('File Explorer', 'Send request?',
+                                                    icon="question")
+                if msg_box == 'yes':
+                    network_peer.send_request(app.frames[RepoPage].peerListBox.get(0), file_name)
             else:
                 message = "Lệnh không hợp lệ vui lòng nhập lại!"
                 tkinter.messagebox.showinfo(message)
